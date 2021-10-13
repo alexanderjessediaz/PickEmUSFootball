@@ -1,13 +1,29 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/home';
 
-const StackNavigator = createNativeStackNavigator();
+export const enum MAIN_ROUTES {
+  HOME = 'HOME',
+}
+
+export type MainStackParamList = {
+  [MAIN_ROUTES.HOME]: undefined;
+};
+
+const StackNavigator = createNativeStackNavigator<MainStackParamList>();
+
+export type MainNavigationProp = NativeStackNavigationProp<
+  MainStackParamList,
+  MAIN_ROUTES.HOME
+>;
 
 const MainStack = () => {
   return (
     <StackNavigator.Navigator>
-      <StackNavigator.Screen name="home" component={HomeScreen} />
+      <StackNavigator.Screen name={MAIN_ROUTES.HOME} component={HomeScreen} />
     </StackNavigator.Navigator>
   );
 };
