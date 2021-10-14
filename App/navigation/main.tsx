@@ -13,6 +13,12 @@ export type MainStackParamList = {
   [MAIN_ROUTES.HOME]: undefined;
 };
 
+interface Props {
+  onChangeText: (text: string) => void;
+  value?: string;
+  KeyboardType?: string;
+}
+
 const StackNavigator = createNativeStackNavigator<MainStackParamList>();
 
 export type MainNavigationProp = NativeStackNavigationProp<
@@ -20,7 +26,7 @@ export type MainNavigationProp = NativeStackNavigationProp<
   MAIN_ROUTES.HOME
 >;
 
-const MainStack = () => {
+const MainStack: React.FC<Props> = () => {
   return (
     <StackNavigator.Navigator>
       <StackNavigator.Screen name={MAIN_ROUTES.HOME} component={HomeScreen} />
